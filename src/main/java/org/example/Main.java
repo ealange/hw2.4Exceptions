@@ -5,20 +5,22 @@ import org.example.exception.WrongPasswordException;
 
 public class Main {
     public static void main(String[] args) {
-        String login = "Lange_E_A1983";
-        String password = "qaz_123";
-        String passwordConfirm = "qaZ_123";
+        String login = null;//"Lange_E_A1983";
+        String password = "qaz_12.3";
+        String passwordConfirm = "qaz_123";
         System.out.println(acceptThreeParameters(login, password, passwordConfirm));
     }
 
     public static boolean acceptThreeParameters(String login, String password, String passwordConfirm) {
         boolean checkLogin;
+        boolean checkLoginLength;
         boolean checkPassword;
         boolean checkPasswordLength;
+        boolean checkPasswordMatching;
         try {
             checkLogin = checkParameterValid(login);
             checkPassword = checkParameterValid(password);
-            checkLoginLength(login);
+            checkLoginLength = checkLoginLength(login);
             checkPasswordLength = checkPasswordLength(password);
             checkPasswordMatching(password, passwordConfirm);
         } catch (WrongLoginException exception) {
@@ -37,7 +39,7 @@ public class Main {
         //проверка на null
         if (checkParameter == null) {
             throw new NullPointerException("Параметр является null");
-            return false;
+
         }
         //проверка содержания через регулярные выражения
         if (checkParameter.matches("[a-zA-Z_\\d]+")) {
